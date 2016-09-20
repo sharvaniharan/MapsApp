@@ -25,7 +25,6 @@ public class GMapV2GetRouteDirection {
     public GMapV2GetRouteDirection() { }
 
     public Document getDocument(LatLng start, LatLng end, String mode) {
-		Log.e("SHAR@@@@@@@@@@@","Entering GMapV2GetRouteDirection --1");
 
         String url = "http://maps.googleapis.com/maps/api/directions/xml?"
                 + "origin=" + start.latitude + "," + start.longitude 
@@ -33,7 +32,6 @@ public class GMapV2GetRouteDirection {
                 + "&sensor=false&units=metric&mode=driving";
 
         try {
-    		Log.e("SHAR@@@@@@@@@@@","Entering GMapV2GetRouteDirection --2");
 
             HttpClient httpClient = new DefaultHttpClient();
             HttpContext localContext = new BasicHttpContext();
@@ -42,11 +40,9 @@ public class GMapV2GetRouteDirection {
             InputStream in = response.getEntity().getContent();
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = builder.parse(in);
-    		Log.e("SHAR@@@@@@@@@@@","Entering GMapV2GetRouteDirection --3");
 
             return doc;
         } catch (Exception e) {
-    		Log.e("SHAR@@@@@@@@@@@","Entering GMapV2GetRouteDirectionEXCEPTION!!!!!");
 
             e.printStackTrace();
         }
@@ -54,7 +50,6 @@ public class GMapV2GetRouteDirection {
     }
 
     public String getDurationText (Document doc) {
-		Log.e("SHAR@@@@@@@@@@@","Entering getDurationText");
 
         NodeList nl1 = doc.getElementsByTagName("duration");
         Node node1 = nl1.item(0);
@@ -65,7 +60,6 @@ public class GMapV2GetRouteDirection {
     }
 
     public int getDurationValue (Document doc) {
-		Log.e("SHAR@@@@@@@@@@@","Entering getDurationValue");
 
         NodeList nl1 = doc.getElementsByTagName("duration");
         Node node1 = nl1.item(0);
@@ -76,7 +70,6 @@ public class GMapV2GetRouteDirection {
     }
 
     public String getDistanceText (Document doc) {
-		Log.e("SHAR@@@@@@@@@@@","Entering getDistanceText");
 
         NodeList nl1 = doc.getElementsByTagName("distance");
         Node node1 = nl1.item(0);
@@ -87,7 +80,6 @@ public class GMapV2GetRouteDirection {
     }
 
     public int getDistanceValue (Document doc) {
-		Log.e("SHAR@@@@@@@@@@@","Entering getDistanceValue");
 
         NodeList nl1 = doc.getElementsByTagName("distance");
         Node node1 = nl1.item(0);
@@ -98,7 +90,6 @@ public class GMapV2GetRouteDirection {
     }
 
     public String getStartAddress (Document doc) {
-		Log.e("SHAR@@@@@@@@@@@","Entering getStartAddress");
 
         NodeList nl1 = doc.getElementsByTagName("start_address");
         Node node1 = nl1.item(0);
@@ -107,7 +98,6 @@ public class GMapV2GetRouteDirection {
     }
 
     public String getEndAddress (Document doc) {
-		Log.e("SHAR@@@@@@@@@@@","Entering getEndAddress");
 
         NodeList nl1 = doc.getElementsByTagName("end_address");
         Node node1 = nl1.item(0);
@@ -116,7 +106,6 @@ public class GMapV2GetRouteDirection {
     }
 
     public String getCopyRights (Document doc) {
-		Log.e("SHAR@@@@@@@@@@@","Entering getCopyRights");
 
         NodeList nl1 = doc.getElementsByTagName("copyrights");
         Node node1 = nl1.item(0);
@@ -125,7 +114,6 @@ public class GMapV2GetRouteDirection {
     }
 
     public ArrayList<LatLng> getDirection (Document doc) {
-		Log.e("SHAR@@@@@@@@@@@","Entering getDirection");
 
         NodeList nl1, nl2, nl3;
         ArrayList<LatLng> listGeopoints = new ArrayList<LatLng>();
@@ -165,7 +153,6 @@ public class GMapV2GetRouteDirection {
     }
 
     private int getNodeIndex(NodeList nl, String nodename) {
-		Log.e("SHAR@@@@@@@@@@@","Entering getNodeIndex");
 
         for(int i = 0 ; i < nl.getLength() ; i++) {
             if(nl.item(i).getNodeName().equals(nodename))
@@ -175,7 +162,6 @@ public class GMapV2GetRouteDirection {
     }
 
     private ArrayList<LatLng> decodePoly(String encoded) {
-		Log.e("SHAR@@@@@@@@@@@","Entering decodePoly");
 
         ArrayList<LatLng> poly = new ArrayList<LatLng>();
         int index = 0, len = encoded.length();
